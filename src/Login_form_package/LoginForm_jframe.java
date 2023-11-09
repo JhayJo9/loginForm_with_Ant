@@ -152,28 +152,32 @@ public class LoginForm_jframe extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         
-        // connection to the database
        
        System.out.println("Hello");
-        try {                 
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");           
+        try {  
+            // connection 
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
+            // path for the accdb
+            // user dns / 64bits
             String url = "jdbc:ucanaccess://C:\\Users\\penal\\Documents\\JavaLogin.accdb";  
             Connection con = DriverManager.getConnection(url);                 
             try {                     
                     Statement st = con.createStatement();                     
-                    /**Your database Table name */ 
-                 //   ResultSet rs = st.executeQuery("SELECT * FROM cars");
-                 ResultSet rs;
-                    /*here cars is a table select your own table here*/        
-             String sql = "select * from Logintbl where  username = '" + txt_user.getText() + "'and password = '" + txt_pass.getText() + "'";
-              rs = st.executeQuery(sql);
-              
-              if(rs.next()){
+                    ResultSet rs;
+                    String sql = "select * from Logintbl where  username = '" + txt_user.getText() + "'and password = '" + txt_pass.getText() + " '";
+                    rs = st.executeQuery(sql);
+                
+                if(rs.next()){
                  JOptionPane.showMessageDialog(null, "Login Successful!!", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
-            }
-            else {
-                 JOptionPane.showMessageDialog(null, "as", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
-            }
+                }
+                else if(txt_user.getText().equals("") && txt_pass.getText().equals("")){
+                     JOptionPane.showMessageDialog(null, "Please enter required fields", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
+                }
+                else {
+                     JOptionPane.showMessageDialog(null, "Invalid inputs. Please enter required fields", "??", JOptionPane.INFORMATION_MESSAGE);           
+                     txt_user.setText(null);
+                     txt_pass.setText(null);
+                }
             }catch(Exception ex){                    
                      System.out.println("error occured "+ex);                   
                  } 
