@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/LoginForm.jar"/>
+	<classpathentry kind="lib" path="UCanAccess/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="UCanAccess/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="UCanAccess/hsqldb-2.5.0.jar"/>
+	<classpathentry kind="lib" path="UCanAccess/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="UCanAccess/ucanaccess-5.0.1.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

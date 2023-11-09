@@ -5,21 +5,21 @@
 package Login_form_package;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import java.sql.*;
 /**
  *
  * @author penal
  */
 public class LoginForm_jframe extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginForm_jframe
-     */
     public LoginForm_jframe() {
         initComponents();
         
         // jframe bg color
-        Color kulay = new Color(122, 244, 242);
+        Color kulay = new Color(200, 220, 100);
         getContentPane().setBackground(kulay);
+        
+       
     }
 
     /**
@@ -34,11 +34,11 @@ public class LoginForm_jframe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jtusername = new javax.swing.JTextField();
-        blogin = new javax.swing.JButton();
-        bexit = new javax.swing.JButton();
+        txt_user = new javax.swing.JTextField();
+        btn_login = new javax.swing.JButton();
+        btn_exit = new javax.swing.JButton();
         jcshow_password = new javax.swing.JCheckBox();
-        jpassword = new javax.swing.JPasswordField();
+        txt_pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 204, 255));
@@ -52,30 +52,35 @@ public class LoginForm_jframe extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel3.setText("Password");
 
-        jtusername.setBackground(new java.awt.Color(204, 204, 204));
-        jtusername.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        blogin.setBackground(new java.awt.Color(10, 124, 255));
-        blogin.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        blogin.setForeground(java.awt.Color.white);
-        blogin.setText("Login");
-        blogin.setBorder(null);
-        blogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        blogin.addActionListener(new java.awt.event.ActionListener() {
+        txt_user.setBackground(new java.awt.Color(204, 204, 204));
+        txt_user.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bloginActionPerformed(evt);
+                txt_userActionPerformed(evt);
             }
         });
 
-        bexit.setBackground(new java.awt.Color(10, 124, 255));
-        bexit.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        bexit.setForeground(java.awt.Color.white);
-        bexit.setText("Exit");
-        bexit.setBorder(null);
-        bexit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bexit.addActionListener(new java.awt.event.ActionListener() {
+        btn_login.setBackground(new java.awt.Color(10, 124, 255));
+        btn_login.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        btn_login.setForeground(java.awt.Color.white);
+        btn_login.setText("Login");
+        btn_login.setBorder(null);
+        btn_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bexitActionPerformed(evt);
+                btn_loginActionPerformed(evt);
+            }
+        });
+
+        btn_exit.setBackground(new java.awt.Color(10, 124, 255));
+        btn_exit.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        btn_exit.setForeground(java.awt.Color.white);
+        btn_exit.setText("Exit");
+        btn_exit.setBorder(null);
+        btn_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exitActionPerformed(evt);
             }
         });
 
@@ -87,7 +92,7 @@ public class LoginForm_jframe extends javax.swing.JFrame {
             }
         });
 
-        jpassword.setBackground(new java.awt.Color(204, 204, 204));
+        txt_pass.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,8 +108,8 @@ public class LoginForm_jframe extends javax.swing.JFrame {
                                 .addComponent(jLabel3))
                             .addGap(49, 49, 49)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtusername)
-                                .addComponent(jpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                                .addComponent(txt_user)
+                                .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(58, 58, 58)
                             .addComponent(jLabel1)))
@@ -113,9 +118,9 @@ public class LoginForm_jframe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jcshow_password)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(blogin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
-                                .addComponent(bexit, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)))))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
@@ -126,18 +131,18 @@ public class LoginForm_jframe extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jcshow_password)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(blogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bexit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -145,41 +150,62 @@ public class LoginForm_jframe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
-  
-         if(jtusername.getText().equals("") && jpassword.getText().equals("") ){
-        JOptionPane.showMessageDialog(null, "Please fillout username and password",null, JOptionPane.WARNING_MESSAGE);
-        }
-        else if(jtusername.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please fillout username");
-        }
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         
-        // predefined username and password
-        else if(jtusername.getText().contains("JhayJ") && jpassword.getText().contains("12345")){
-            JOptionPane.showMessageDialog(null, "Login Successful!!", "JFRAME", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else if(jpassword.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please fillout password");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Wrong username or password" , null , JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_bloginActionPerformed
+        // connection to the database
+       
+       System.out.println("Hello");
+        try {                 
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");           
+            String url = "jdbc:ucanaccess://C:\\Users\\penal\\Documents\\JavaLogin.accdb";  
+            Connection con = DriverManager.getConnection(url);                 
+            try {                     
+                    Statement st = con.createStatement();                     
+                    /**Your database Table name */ 
+                 //   ResultSet rs = st.executeQuery("SELECT * FROM cars");
+                 ResultSet rs;
+                    /*here cars is a table select your own table here*/        
+             String sql = "select * from Logintbl where  username = '" + txt_user.getText() + "'and password = '" + txt_pass.getText() + "'";
+              rs = st.executeQuery(sql);
+              
+              if(rs.next()){
+                 JOptionPane.showMessageDialog(null, "Login Successful!!", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
+            }
+            else {
+                 JOptionPane.showMessageDialog(null, "as", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
+            }
+            }catch(Exception ex){                    
+                     System.out.println("error occured "+ex);                   
+                 } 
+       }catch(Exception x){                    
+           System.out.println("error occured"+x);             
+       }
+        
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     private void jcshow_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcshow_passwordActionPerformed
         // TODO add your handling code here:
         if(jcshow_password.isSelected()){
-            jpassword.setEchoChar((char)0);
+            txt_pass.setEchoChar((char)0);
         }
         else{
-            jpassword.setEchoChar('*');
+            txt_pass.setEchoChar('*');
         }
     }//GEN-LAST:event_jcshow_passwordActionPerformed
 
-    private void bexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bexitActionPerformed
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_bexitActionPerformed
+     
+        int confirmed = JOptionPane.showConfirmDialog(null,"Exit Again?", "Exit" , JOptionPane.YES_NO_OPTION);
+        if(confirmed == JOptionPane.YES_OPTION){ // check if the user click the ( YES )
+             //System.exit(0);
+             dispose();
+        }
+    }//GEN-LAST:event_btn_exitActionPerformed
+
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,13 +243,13 @@ public class LoginForm_jframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bexit;
-    private javax.swing.JButton blogin;
+    private javax.swing.JButton btn_exit;
+    private javax.swing.JButton btn_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JCheckBox jcshow_password;
-    private javax.swing.JPasswordField jpassword;
-    private javax.swing.JTextField jtusername;
+    private javax.swing.JPasswordField txt_pass;
+    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
