@@ -100,18 +100,17 @@ public class LoginForm_jframe extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGap(49, 49, 49)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_user)
-                                .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_user)
+                                    .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -154,13 +153,15 @@ public class LoginForm_jframe extends javax.swing.JFrame {
         
        
        System.out.println("Hello");
+       // error handling for connection
         try {  
             // connection 
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             // path for the accdb
             // user dns / 64bits
             String url = "jdbc:ucanaccess://C:\\Users\\penal\\Documents\\JavaLogin.accdb";  
-            Connection con = DriverManager.getConnection(url);                 
+            Connection con = DriverManager.getConnection(url);
+            // error handling for query
             try {                     
                     Statement st = con.createStatement();                     
                     ResultSet rs;
@@ -168,7 +169,10 @@ public class LoginForm_jframe extends javax.swing.JFrame {
                     rs = st.executeQuery(sql);
                 
                 if(rs.next()){
-                 JOptionPane.showMessageDialog(null, "Login Successful!!", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
+                 JOptionPane.showMessageDialog(null, "Login Successful!!", "JFRAME", JOptionPane.INFORMATION_MESSAGE); 
+                 Main frame2 = new Main();
+                 LoginForm_jframe.this.setVisible(false);
+                 frame2.setVisible(true); 
                 }
                 else if(txt_user.getText().equals("") && txt_pass.getText().equals("")){
                      JOptionPane.showMessageDialog(null, "Please enter required fields", "JFRAME", JOptionPane.INFORMATION_MESSAGE);           
